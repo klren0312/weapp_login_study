@@ -6,9 +6,13 @@
   "dependencies": {
     "egg": "^2.2.1",
     "egg-mysql": "^3.0.0",
+    "egg-redis": "^2.0.0",
     "egg-scripts": "^2.5.0",
     "egg-sequelize": "^3.1.3",
-    "mysql2": "^1.5.3"
+    "egg-socket.io": "^4.0.7",
+    "egg-validate": "^1.0.0",
+    "mysql2": "^1.5.3",
+    "uws": "^9.147.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -24,9 +28,9 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-eggStudy",
+    "start": "egg-scripts start --daemon --title=egg-server-eggStudy --sticky",
     "stop": "egg-scripts stop --title=egg-server-eggStudy",
-    "dev": "egg-bin dev",
+    "dev": "egg-bin dev --sticky",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
