@@ -1,7 +1,15 @@
 'use strict';
 
 const Controller = require('egg').Controller;
-
+const createRule = {
+  username: {
+    type: 'email',
+  },
+  password: {
+    type: 'password',
+    compare: 're-password',
+  }
+}
 class UserController extends Controller {
   async index() {
     const {ctx} = this;
@@ -12,6 +20,20 @@ class UserController extends Controller {
     const {ctx} = this;
     ctx.body = `user: ${ctx.params.id}, ${ctx.params.name}`;
   };
+
+  async check() {
+    const {ctx} = this;
+    try{
+      ctx.validate(createRule);
+      ctx.body = ctx.request.body;
+    } catch(e){
+      console.log(e);
+      ctx.body = {
+        errors: e.errors
+      }
+    }
+ 
+  }
 }
 
 module.exports = UserController;
