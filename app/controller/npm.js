@@ -15,27 +15,27 @@ class NpmController extends Controller {
       status: result.status,
       headers: result.headers,
       package: result.data,
-    }
+    };
   }
   async get() {
     const ctx = this.ctx;
-    const result = await ctx.curl('https://httpbin.org/get?foo=bar',{
-      dataType: 'json'
+    const result = await ctx.curl('https://httpbin.org/get?foo=bar', {
+      dataType: 'json',
     });
     ctx.status = result.status;
     ctx.set(result.headers);
     ctx.body = result.data;
   }
   async post() {
-    const {ctx} = this;
+    const { ctx } = this;
     const result = await ctx.curl('https://httpbin.org/post', {
       method: 'POST',
       contentType: 'json',
       data: {
         hello: 'world',
-        now: Date.now()
+        now: Date.now(),
       },
-      dataType:'json'
+      dataType: 'json',
     });
     ctx.body = result.data;
   }

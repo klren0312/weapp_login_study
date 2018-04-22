@@ -1,5 +1,6 @@
+'use strict';
 module.exports = app => {
-  const {STRING, INTERGE, DATE} = app.Sequelize;
+  const { STRING, INTERGE, DATE } = app.Sequelize;
 
   const User = app.model.define('user', {
     login: STRING,
@@ -11,19 +12,19 @@ module.exports = app => {
     updated_at: DATE,
   });
 
-  User.findByLogin = async (login) => {
+  User.findByLogin = async login => {
     return await this.findOne({
       where: {
-        login: login
-      }
+        login,
+      },
     });
-  }
+  };
 
   User.prototype.logSignin = async () => {
     await this.update({
-      last_sign_in_at: new Date().toLocaleString()
-    })
-  }
+      last_sign_in_at: new Date().toLocaleString(),
+    });
+  };
 
   return User;
-}
+};
